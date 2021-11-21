@@ -5,12 +5,10 @@ import lombok.*;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class SessionDTO {
+public class AddSessionRequest {
     private UUID userId;
     private UUID machineId;
     private long orgId;

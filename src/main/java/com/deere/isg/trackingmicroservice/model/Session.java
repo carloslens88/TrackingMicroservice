@@ -16,7 +16,7 @@ import java.util.UUID;
 @Table(name="t_session")
 public class Session implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
     @NotNull
     private UUID userId;

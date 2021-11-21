@@ -1,5 +1,6 @@
 package com.deere.isg.trackingmicroservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,13 +16,16 @@ import java.util.UUID;
 @Table(name="t_event")
 public class Event implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
     @NotNull
     private Timestamp eventAt;
     @NotNull
     private String eventType;
     private String payload;
-    @NotNull
-    private UUID sessionId;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "sessionId", nullable = false)
+    @JsonIgnore
+    private Session session;
 }

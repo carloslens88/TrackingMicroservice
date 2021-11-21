@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  tms-api:
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+      args:
+        - JAVA_OPTS=-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n
+    image: "tms-api"
+    container_name: "tms-api"
+    environment:
+      - ENV=LOCAL
+    ports:
+      - "8080:8080"
+    networks:
+      - tms-api-network
+      - tms-network
+networks:
+  tms-api-network:
+    name: tms-api-network
+  tms-network:
+    external: true

@@ -1,6 +1,7 @@
 package com.deere.isg.trackingmicroservice.service;
 
-import com.deere.isg.trackingmicroservice.dto.SessionDTO;
+import com.deere.isg.trackingmicroservice.dto.*;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import com.deere.isg.trackingmicroservice.model.Session;
 import com.deere.isg.trackingmicroservice.repository.SessionRepository;
@@ -11,16 +12,17 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class SessionService implements ISession {
-    SessionRepository sessionRepository;
+
+    private final SessionRepository sessionRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
-    public SessionService(SessionRepository sessionRepository) {
+    public SessionService(SessionRepository sessionRepository, ModelMapper modelMapper) {
         this.sessionRepository = sessionRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -29,27 +31,28 @@ public class SessionService implements ISession {
     }
 
     @Override
-    public Session save(SessionDTO sessionDto) {
+    public Session save(AddSessionRequest addSessionRequest) {
         try {
-            Session session = modelMapper.map(sessionDto, Session.class);
-            session.setId(UUID.randomUUID());
+            Session session = modelMapper.map(addSessionRequest, Session.class);
             return sessionRepository.save(session);
         } catch (Exception ex) {
+            log.error("Error trying to save the trace addSession.", ex);
             throw ex;
         }
     }
 
     @Override
-    public Session endSession(SessionDTO sessionDto) throws NullPointerException {
+    public Session endSession(EndSessionRequest endSessionRequest) throws NullPointerException {
         try {
-            Optional<Session> session = sessionRepository.findById(sessionDto.getMachineId());
+            Optional<Session> session = sessionRepository.findById(endSessionRequest.getSessionId());
             if (session.isPresent()) {
-                session.get().setEndAt(sessionDto.getStartAt());
+                session.get().setEndAt(endSessionRequest.getEndAt());
                 return sessionRepository.save(session.get());
             } else {
                 throw new NullPointerException("Session guid doesn't exists.");
             }
         }catch (Exception ex) {
+            log.error("Error trying to save the trace endSession.", ex);
             throw ex;
         }
     }
