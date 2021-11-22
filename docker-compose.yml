@@ -15,9 +15,6 @@ services:
       - "8080:8080"
     networks:
       - tms-api-network
-      - tms-network
 networks:
   tms-api-network:
     name: tms-api-network
-  tms-network:
-    external: true
