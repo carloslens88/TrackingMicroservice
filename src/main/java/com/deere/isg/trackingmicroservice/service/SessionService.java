@@ -30,6 +30,12 @@ public class SessionService implements ISession {
         return sessionRepository.findById(id);
     }
 
+    /**
+     * This method is used to create (start) a session and returns the session information.
+     *
+     * @param addSessionRequest session details to start
+     * @return Session session information.
+     */
     @Override
     public Session save(AddSessionRequest addSessionRequest) {
         try {
@@ -41,6 +47,13 @@ public class SessionService implements ISession {
         }
     }
 
+    /**
+     * This method is used to update the entAt session attribute and returns the session information.
+     *
+     * @param endSessionRequest session details to end
+     * @throws NullPointerException when session doesn't exist
+     * @return Session details of the session
+     */
     @Override
     public Session endSession(EndSessionRequest endSessionRequest) throws NullPointerException {
         try {

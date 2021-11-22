@@ -7,6 +7,9 @@ import com.deere.isg.trackingmicroservice.model.Session;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * @author Carlos Lens
+ */
 public interface ISession {
     Optional<Session> findById(UUID id);
     Session save (AddSessionRequest session);

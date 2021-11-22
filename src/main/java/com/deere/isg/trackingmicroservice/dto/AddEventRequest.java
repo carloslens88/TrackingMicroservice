@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author Carlos Lens
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

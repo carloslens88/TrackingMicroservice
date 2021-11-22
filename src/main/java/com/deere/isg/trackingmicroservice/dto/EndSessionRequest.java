@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+/**
+ * @author Carlos Lens
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

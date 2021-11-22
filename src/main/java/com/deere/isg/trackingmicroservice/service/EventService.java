@@ -15,6 +15,12 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * EventService provides a Service component to operate with the Event entity across the Repository.
+ *
+ * @author Carlos Lens
+ *
+ */
 @Slf4j
 @Service
 public class EventService implements IEvent {
@@ -31,6 +37,11 @@ public class EventService implements IEvent {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * This method is used to add an Event in batch mode using hibernate config options.
+     *
+     * @param addEventRequest event details to attach to the session
+     */
     @Override
     @Transactional
     public void addEvent(AddEventRequest addEventRequest) {

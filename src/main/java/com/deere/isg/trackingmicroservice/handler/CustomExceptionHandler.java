@@ -9,6 +9,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CustomExceptionHandler provides an util helper to handle uncatched exceptions.
+ *
+ * @author Carlos Lens
+ *
+ */
 @Slf4j
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 

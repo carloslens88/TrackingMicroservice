@@ -1,6 +1,7 @@
 package com.deere.isg.trackingmicroservice.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,6 +9,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+/**
+ * @author Carlos Lens
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +20,8 @@ import java.util.UUID;
 @Table(name="t_session")
 public class Session implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
     @NotNull
     private UUID userId;

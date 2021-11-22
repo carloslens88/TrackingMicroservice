@@ -8,9 +8,18 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+/**
+ * @author Carlos Lens
+ */
 @Component
 public class SocketTextHandler extends TextWebSocketHandler {
 
+    /**
+     *
+     * @param session current session
+     * @param message message or information to handle
+     * @throws IOException when an error occurred trying to parse payload to json
+     */
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message)
             throws IOException {
