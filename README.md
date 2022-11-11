@@ -11,3 +11,5 @@ Navigate to project folder
 2) Execute command -- docker-compose up
 
 The application must be running on localhost:8080
+
+Testing githubw workflows
